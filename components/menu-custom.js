@@ -233,14 +233,14 @@ class CustomMenu extends HTMLElement {
               <span class="line line3"></span>
             </div>
             <div class="logo">
-              <img src="./images/logo.png">
+              <img src="../images/logo.png">
             </div>
             <div class="menu-items">
-              <li><a href="#">Inici</a></li>
-              <li><a href="pages/quiSoc.html">Qui soc?</a></li>
-              <li><a href="pages/proces.html">Procés</a></li>
-              <li><a href="pages/fonaments.html">Fonaments</a></li>
-              <li><a href="pages/liniesFutures.html">Linies Futures</a></li>
+              <li><a href="../index.html">Inici</a></li>
+              <li><a href="../pages/quiSoc.html">Qui soc?</a></li>
+              <li><a href="../pages/proces.html">Procés</a></li>
+              <li><a href="../pages/fonaments.html">Fonaments</a></li>
+              <li><a href="../pages/liniesFutures.html">Linies Futures</a></li>
             </div>
           </div>
         </div>
