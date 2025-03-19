@@ -3,259 +3,192 @@ class CustomMenu extends HTMLElement {
     super();
     this.attachShadow({ mode: "open" });
     this.render();
+    this.addEventListeners();
   }
 
   render() {
     this.shadowRoot.innerHTML = `
       <style>
-        .container {
-          max-width: 1050px;
-          width: 90%;
-          margin: auto;
+        :host {
+          --primary-color: #2c3639;
+          --hover-color: #3f4e4f;
+          --background-color: #ffff;
+          --menu-height: 70px;
         }
 
         .navbar {
+          background: var(--background-color);
+          position: fixed;
           width: 100%;
-          box-shadow: 0 1px 4px rgb(146 161 176 / 15%);
+          top: 0;
+          left: 0;
+          box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+          z-index: 1000;
         }
 
         .nav-container {
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 0 20px;
+          height: var(--menu-height);
           display: flex;
           justify-content: space-between;
           align-items: center;
-          height: 62px;
-        }
-
-        .navbar .menu-items {
-          display: flex;
-        }
-
-        .navbar .nav-container li {
-          list-style: none;
-        }
-
-        .navbar .nav-container a {
-          text-decoration: none;
-          color: #0e2431;
-          font-weight: 500;
-          font-size: 1.2rem;
-          padding: 0.7rem;
-        }
-
-        .navbar .nav-container a:hover{
-            font-weight: bolder;
-        }
-
-        .nav-container {
-          display: block;
-          position: relative;
-          height: 60px;
-        }
-
-        .nav-container .checkbox {
-          position: absolute;
-          display: block;
-          height: 32px;
-          width: 32px;
-          top: 20px;
-          left: 20px;
-          z-index: 5;
-          opacity: 0;
-          cursor: pointer;
-        }
-
-        .nav-container .hamburger-lines {
-          display: block;
-          height: 26px;
-          width: 32px;
-          position: absolute;
-          top: 17px;
-          left: 20px;
-          z-index: 2;
-          display: flex;
-          flex-direction: column;
-          justify-content: space-between;
-        }
-
-        .nav-container .hamburger-lines .line {
-          display: block;
-          height: 4px;
-          width: 100%;
-          border-radius: 10px;
-          background: #0e2431;
-        }
-
-        .nav-container .hamburger-lines .line1 {
-          transform-origin: 0% 0%;
-          transition: transform 0.4s ease-in-out;
-        }
-
-        .nav-container .hamburger-lines .line2 {
-          transition: transform 0.2s ease-in-out;
-        }
-
-        .nav-container .hamburger-lines .line3 {
-          transform-origin: 0% 100%;
-          transition: transform 0.4s ease-in-out;
-        }
-
-        .navbar .menu-items {
-          padding-top: 120px;
-          box-shadow: inset 0 0 2000px rgba(255, 255, 255, .5);
-          height: 100vh;
-          width: 100%;
-          transform: translate(-150%);
-          display: flex;
-          flex-direction: column;
-          margin-left: -40px;
-          padding-left: 50px;
-          transition: transform 0.5s ease-in-out;
-          text-align: center;
-        }
-
-        .navbar .menu-items li {
-          margin-bottom: 1.2rem;
-          font-size: 1.5rem;
-          font-weight: 500;
         }
 
         .logo {
+          height: 40px;
+          z-index: 2;
+        }
+
+        .logo img {
+          height: 100%;
+          width: auto;
+        }
+
+        .menu-items {
+          display: flex;
+          gap: 2rem;
+          margin: 0;
+          padding: 0;
+          list-style: none;
+        }
+
+        .menu-items a {
+          color: var(--primary-color);
+          text-decoration: none;
+          font-size: 1rem;
+          font-weight: 500;
+          padding: 0.5rem 1rem;
+          transition: all 0.3s ease;
+          position: relative;
+        }
+
+        .menu-items a::after {
+          content: '';
           position: absolute;
-          top: 5px;
-          right: 15px;
-          font-size: 1.2rem;
-          color: #0e2431;
+          bottom: 0;
+          left: 1rem;
+          right: 1rem;
+          height: 2px;
+          background-color: var(--hover-color);
+          transform: scaleX(0);
+          transition: transform 0.3s ease;
         }
 
-        .nav-container input[type="checkbox"]:checked ~ .menu-items {
-          transform: translateX(0);
+        .menu-items a:hover::after {
+          transform: scaleX(1);
         }
 
-        .nav-container input[type="checkbox"]:checked ~ .hamburger-lines .line1 {
-          transform: rotate(45deg);
-        }
-
-        .nav-container input[type="checkbox"]:checked ~ .hamburger-lines .line2 {
-          transform: scaleY(0);
-        }
-
-        .nav-container input[type="checkbox"]:checked ~ .hamburger-lines .line3 {
-          transform: rotate(-45deg);
-        }
-
-        .nav-container input[type="checkbox"]:checked ~ .logo{
+        .hamburger {
           display: none;
         }
 
         @media (max-width: 768px) {
-          .nav-container {
+          .hamburger {
             display: block;
+            width: 30px;
+            height: 20px;
             position: relative;
-            height: 60px;
-          }
-
-          .nav-container .checkbox {
-            position: absolute;
-            display: block;
-            height: 32px;
-            width: 32px;
-            top: 20px;
-            left: 20px;
-            z-index: 5;
-            opacity: 0;
             cursor: pointer;
-          }
-
-          .nav-container .hamburger-lines {
-            display: flex;
-            height: 26px;
-            width: 32px;
-            position: absolute;
-            top: 17px;
-            left: 20px;
             z-index: 2;
-            flex-direction: column;
-            justify-content: space-between;
           }
 
-          .nav-container .hamburger-lines .line {
+          .hamburger span {
             display: block;
-            height: 4px;
+            position: absolute;
+            height: 2px;
             width: 100%;
-            border-radius: 10px;
-            background: #0e2431;
-            transition: transform 0.4s ease-in-out;
+            background: var(--primary-color);
+            border-radius: 2px;
+            transition: all 0.3s ease;
           }
 
-          .navbar .menu-items {
-            position: absolute;
-            top: 60px;
+          .hamburger span:nth-child(1) { top: 0; }
+          .hamburger span:nth-child(2) { top: 9px; }
+          .hamburger span:nth-child(3) { top: 18px; }
+
+          .menu-open .hamburger span:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+          }
+
+          .menu-open .hamburger span:nth-child(2) {
+            opacity: 0;
+          }
+
+          .menu-open .hamburger span:nth-child(3) {
+            transform: rotate(-45deg) translate(8px, -8px);
+          }
+
+          .menu-items {
+            position: fixed;
+            top: var(--menu-height);
             left: 0;
-            width: 100%;
-            height: 100vh;
-            background: white;
+            right: 0;
+            bottom: 0;
+            background: var(--background-color);
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            text-align: center;
+            justify-content: flex-start;
+            padding-top: 2rem;
+            gap: 1.5rem;
             transform: translateX(-100%);
-            transition: transform 0.5s ease-in-out;
+            transition: transform 0.3s ease-in-out;
           }
 
-          .navbar .menu-items li {
-            margin-bottom: 1.5rem;
-          }
-
-          .nav-container input[type="checkbox"]:checked ~ .menu-items {
+          .menu-open .menu-items {
             transform: translateX(0);
           }
 
-          .nav-container input[type="checkbox"]:checked ~ .hamburger-lines .line1 {
-            transform: rotate(45deg) translate(5px, 5px);
+          .menu-items a {
+            font-size: 1.2rem;
+            padding: 1rem;
           }
 
-          .nav-container input[type="checkbox"]:checked ~ .hamburger-lines .line2 {
-            opacity: 0;
-          }
-
-          .nav-container input[type="checkbox"]:checked ~ .hamburger-lines .line3 {
-            transform: rotate(-45deg) translate(5px, -5px);
+          .menu-items a::after {
+            display: none;
           }
         }
       </style>
-      <nav>
-        <div class="navbar">
-          <div class="container nav-container">
-            <input class="checkbox" type="checkbox"/>
-            <div class="hamburger-lines">
-              <span class="line line1"></span>
-              <span class="line line2"></span>
-              <span class="line line3"></span>
-            </div>
-            <div class="logo">
-              <img src="../images/logo.png">
-            </div>
-            <div class="menu-items">
-              <li><a href="../index.html">Inici</a></li>
-              <li><a href="../pages/quiSoc.html">Qui soc?</a></li>
-              <li><a href="../pages/proces.html">Procés</a></li>
-              <li><a href="../pages/fonaments.html">Fonaments</a></li>
-              <li><a href="../pages/liniesFutures.html">Linies Futures</a></li>
-            </div>
+
+      <nav class="navbar">
+        <div class="nav-container">
+          <div class="logo">
+            <img src="../images/logo.png" alt="FastFact Logo">
           </div>
+          <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          <ul class="menu-items">
+            <li><a href="../index.html">Inici</a></li>
+            <li><a href="../pages/quiSoc.html">Qui soc?</a></li>
+            <li><a href="../pages/proces.html">Procés</a></li>
+            <li><a href="../pages/fonaments.html">Fonaments</a></li>
+            <li><a href="../pages/liniesFutures.html">Línies Futures</a></li>
+          </ul>
         </div>
       </nav>
-    `;
 
-    this.addEventListeners();
+      <script src="../main.js"></script>
+    `;
   }
 
   addEventListeners() {
-    const hamburger = this.shadowRoot.querySelector("#hamburger");
-    const menu = this.shadowRoot.querySelector("#menu");
+    const hamburger = this.shadowRoot.querySelector('.hamburger');
+    const navbar = this.shadowRoot.querySelector('.navbar');
 
-    hamburger.addEventListener("click", () => {
-      menu.classList.toggle("active");
+    hamburger?.addEventListener('click', () => {
+      navbar.classList.toggle('menu-open');
+    });
+
+    // Tancar el menú quan es fa clic a un enllaç
+    const menuLinks = this.shadowRoot.querySelectorAll('.menu-items a');
+    menuLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        navbar.classList.remove('menu-open');
+      });
     });
   }
 }
