@@ -1,0 +1,188 @@
+/* Estils pagina inici */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f4f4f4;
+    color: #222;
+}
+
+header, nav {
+    background-color: #fff;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+}
+
+nav a {
+    color: #111;
+    margin-left: 2rem;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+main {
+    padding: 2rem;
+    background-color: #f4f4f4;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding-top: 100px;
+    padding-bottom: 10px;
+}
+
+.section-inici {
+    margin: 4rem 0;
+    padding: 2rem;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    max-width: 800px;
+}
+
+.odoo-logo {
+    width: 200px;
+    height: auto;
+    margin: 0 auto;
+    display: block;
+    margin-bottom: 2rem;
+}
+
+p {
+    line-height: 1.6;
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+}
+
+.nav-footer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2rem;
+    padding: 1rem 2rem;
+    background-color: #fff;
+    color: #111;
+    border-top: 1px solid #ddd;
+    text-align: center;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    word-wrap: break-word;
+    max-width: 800px;
+    margin: 0 auto;
+    border-radius: 0 0 12px 12px;
+    box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+/* Estils tarjetes imatges */
+.container-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(450px, 500px));
+    gap: 30px;
+    justify-content: center;
+    max-width: 1200px;
+    align-items: start;
+    padding: 30px;
+}
+
+.card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 500px;
+    text-align: center;
+    margin: 0 auto;
+    justify-content: center;
+    align-items: center;
+}
+       
+.img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    background-color: #eee;
+}
+
+.text-explicatiu {
+    padding: 16px;
+    text-align: center;
+
+}
+
+/* Estils imatges proces */
+#img-instalacio {
+    width: 500px;
+    height: 300px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+#img-clients {
+    width: 500px;
+    height: 300px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+/* Estils pagina proces */
+.titol-pagina {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+#odoo_logo {
+    width: 200px;
+    padding-top: 70px;
+}
+
+/* Estils imatges fonaments */
+#img-python {
+    width: 200px;
+    padding-top: 50px;
+}
+
+#img-db {
+    width: 200px;
+    padding-top: 50px;
+}
+
+#img-docker {
+    width: 300px;
+    padding-top: 30px;
+}
+
+#img-aws {
+    width: 300px;
+    padding-top: 70px;
+}
+
+/* Estils imatges linies futures */
+#img-moduls {
+    width: 500px;
+    height: 300px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+#img-ia {
+    width: 500px;
+    height: 310px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
