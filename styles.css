@@ -115,7 +115,6 @@ p {
 .img {
     width: 100%;
     height: 400px;
-    object-fit: cover;
     background-color: #eee;
 }
 
@@ -125,9 +124,46 @@ p {
 
 }
 
+/* Estils tarjetes d'imatges fonaments i proces */
+.container-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    justify-items: center;
+    align-items: center;
+    max-width: 1200px;
+}
+
+.container-grid-fonaments {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 100px;
+    justify-items: center;
+    align-items: center;
+    max-width: 1000px;
+}
+
+.card-mini {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 500px;
+    height: 550px;
+    text-align: center;
+    margin: 0 auto;
+    justify-content: center;
+    align-items: center;
+}
+
+.img-mini {
+    width: 100%;
+    height: 300px;
+    background-color: #eee;
+}
+
 /* Estils imatges proces */
 #img-instalacio {
-    width: 800px;
+    width: 1100px;
     height: 450px;
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
@@ -136,6 +172,27 @@ p {
 #img-clients {
     width: 1100px;
     height: 393px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+#img-articles {
+    width: 1100px;
+    height: 393px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+#img-factures {
+    width: 1100px;
+    height: 393px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+#img-docker-compose {
+    width: 1100px;
+    height: 400px;
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
 }
