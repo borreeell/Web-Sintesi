@@ -190,6 +190,13 @@ p {
     border-top-right-radius: 8px;
 }
 
+#img-albarans {
+    width: 1100px;
+    height: 393px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
 #img-docker-compose {
     width: 1100px;
     height: 400px;
